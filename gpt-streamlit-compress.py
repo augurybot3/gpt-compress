@@ -7,6 +7,7 @@ load_dotenv()
 client = OpenAI()
 client.api_key = os.getenv('OPENAI_API_KEY')
 default_model = "gpt-3.5-turbo-1106"
+client.api_key = st.secrets["openai"]["api_key"]
 
 
 def encode_and_chat(data_sample, encode_prompt, system_prompt):
