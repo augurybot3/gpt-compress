@@ -5,9 +5,9 @@ import os
 
 load_dotenv()
 client = OpenAI()
-client.api_key = os.getenv('OPENAI_API_KEY')
+# client.api_key = os.getenv('OPENAI_API_KEY')
 default_model = "gpt-3.5-turbo-1106"
-client.api_key = st.secrets["openai"]["api_key"]
+client.api_key = st.secrets["openai_api_key"]
 
 
 def encode_and_chat(data_sample, encode_prompt, system_prompt):
@@ -59,8 +59,8 @@ def main():
             st.text_area("Encoded Data", encoded_data, height=450)
             if 'encoded_data' not in st.session_state:
                 st.session_state.encoded_data = encoded_data
-                decoded_data = decode_and_chat(st.session_state.encoded_data, incept_msg, system_prompt)
-                st.text_area("Decoded Data", decoded_data, height=450)
+            decoded_data = decode_and_chat(st.session_state.encoded_data, incept_msg, system_prompt)
+            st.text_area("Decoded Data", decoded_data, height=450)
 
 if __name__ == "__main__":
     main()
